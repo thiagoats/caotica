@@ -1,0 +1,1 @@
+INSERT INTO users (username, password, authority) VALUES ("admin@caotica.br", "$2a$10$WD8yeBjJ.1bJpmMcKP5MPe19Os/3ZQio3uZ8xOj0BJTxrPNYcWtaO", "ADMIN");
