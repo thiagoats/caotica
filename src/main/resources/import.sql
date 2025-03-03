@@ -3,3 +3,5 @@ INSERT INTO users (username, password, authority) VALUES ("admin@caotica.br", "$
 INSERT INTO associates (cpf, name, birth, gender) VALUES ("24757689080", "Joaquim José da Silva Xavier", "1792-11-12", "MAL");
 
 INSERT INTO addresses (associates_id, place, complement, district) VALUES (1, "Rua da Inconfidência Mineira", "Casa 999-A", "Contagem");
+
+INSERT INTO contacts (associates_id, cellphone, telephone, email) VALUES (1, "(99)99999-9999", "(99)9999-9999", "tiradentes@gmail.com");
