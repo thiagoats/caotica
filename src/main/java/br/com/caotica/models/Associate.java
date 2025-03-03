@@ -1,5 +1,7 @@
 package br.com.caotica.models;
 
+import java.util.Date;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,7 +51,7 @@ public class Associate {
 	 * Associate birth
 	**/
 	@Column(columnDefinition = "date", nullable = false)
-	private String birth;
+	private Date birth;
 	
 	/**
 	 * Associate gender
