@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Caótica | Associados</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}">
+		<link rel="stylesheet" th:href="@{/vendors/datatables/css/datatables.bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/vendors/datatables/css/responsive.bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/vendors/adminlte/css/adminlte.min.css}">
+	</head>
+	<body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+			<div th:replace="~{frags/nav :: sample}"></div>
+			<div class="content-wrapper">
+				<div class="content-header">
+					<div class="container">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h3 class="m-0">Associados</h3>
+							</div>
+							<div class="col-sm-6">
+								<ol class="breadcrumb float-sm-right">
+									<li class="breadcrumb-item"><a th:href="@{/associates}">Associados</a></li>
+									<li class="breadcrumb-item active">Pesquisar</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title m-0">
+											<i class="fas fa-search fa-sm mr-2"></i>Pesquisar
+										</h5>
+									</div>
+									<div class="card-body">
+										<table class="table table-bordered table-striped grid">
+											<thead>
+												<tr>
+													<th>CPF</th>
+													<th>Nome</th>
+													<th>Nasc.</th>
+													<th>Sexo</th>
+													<th>Ação</th>
+												</tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr th:each="associate : ${associates}">
+                                            		<td th:text="${associate.getCpf()}"></td>
+                                            		<td th:text="${associate.getName()}"></td>
+                                            		<td th:text="${#dates.format(associate.getBirth(), 'dd-MM-yyyy')}"></td>
+                                            		<td th:text="${associate.getGender().getDescription()}"></td>
+                                            		<td>
+                                            			<a th:href="@{/associates/{id}/edit(id=${associate.getId()})}" title="Editar"><i class="fas fa-edit fa-sm mr-2 text-primary"></i></a>
+                                            		</td>
+                                            	</tr>
+                                            </tbody>
+                                            <tfoot>
+                                            	<tr>
+                                            		<th>CPF</th>
+                                            		<th>Nome</th>
+                                            		<th>Nasc.</th>
+                                            		<th>Sexo</th>
+                                            		<th>Ação</th>
+                                            	</tr>
+                                            </tfoot>
+										</table>
+									</div>
+									<div class="card-footer">
+										<a href="" class="btn btn-secondary">
+											<i class="fas fa-plus fa-sm mr-2"></i>Novo
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{frags/footer :: sample}"></div>
+		</div>
+		<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+		<script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/vendors/datatables/js/jquery.datatables.min.js}"></script>
+        <script th:src="@{/vendors/datatables/js/datatables.bootstrap.min.js}"></script>
+        <script th:src="@{/vendors/datatables/js/datatables.responsive.min.js}"></script>
+        <script th:src="@{/vendors/datatables/js/responsive.bootstrap.min.js}"></script>
+		<script th:src="@{/vendors/adminlte/js/adminlte.min.js}"></script>
+		<script th:src="@{/js/general/grid.js}"></script>
+	</body>
+</html>
