@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Caótica | Associados</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}">
+		<link rel="stylesheet" th:href="@{/vendors/adminlte/css/adminlte.min.css}">
+	</head>
+	<body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+			<div th:replace="~{frags/nav :: sample}"></div>
+			<div class="content-wrapper">
+				<div class="content-header">
+					<div class="container">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h3 class="m-0">Associados</h3>
+							</div>
+							<div class="col-sm-6">
+								<ol class="breadcrumb float-sm-right">
+									<li class="breadcrumb-item"><a th:href="@{/associates}">Associados</a></li>
+									<li class="breadcrumb-item active">Editar</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<form class="form-horizontal" autocomplete="off" method="post" th:action="@{/associates/edit}" th:object="${associate}">
+										<div class="card-header">
+											<h5 class="card-title m-0">
+												<i class="fas fa-edit fa-sm mr-2"></i>Editar
+											</h5>
+										</div>
+										<div class="card-body">
+											<div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+												<h5><i class="icon fas fa-ban"></i>Atenção</h5>
+												<div th:each="error : ${#fields.errors()}" th:text="${error}"></div>
+											</div>
+											<input type="hidden" class="form-control" th:field="*{id}" th:classappend="${#fields.hasErrors('id')} ? is-invalid">
+											<div class="form-group row">
+												<label for="cpf" class="col-sm-2 col-form-label">CPF</label>
+												<div class="col-sm-5">
+													<input type="text" class="form-control cpf" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label for="name" class="col-sm-2 col-form-label">Nome</label>
+												<div class="col-sm-5">
+													<input type="text" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
+												<div class="col-sm-5">
+													<select class="form-control" th:field="*{gender}" th:classappend="${#fields.hasErrors('gender')} ? is-invalid">
+														<option th:value="NULL">Selecione</option>
+														<option th:each="gender : ${genders}" th:value="${gender.getName()}" th:text="${gender.getDescription()}"></option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label for="birth" class="col-sm-2 col-form-label">Nasc.</label>
+												<div class="col-sm-5">
+													<input type="text" class="form-control date" th:field="*{birth}" th:classappend="${#fields.hasErrors('birth')} ? is-invalid">
+												</div>
+											</div>
+										</div>
+										<div class="card-footer">
+											<button class="btn btn-primary">
+												<i class="fas fa-save fa-sm mr-2"></i>Salvar
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{frags/footer :: sample}"></div>
+		</div>
+		<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+		<script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/vendors/inputmask/js/inputmask.min.js}"></script>
+		<script th:src="@{/vendors/adminlte/js/adminlte.min.js}"></script>
+		<script th:src="@{/js/general/mask.js}"></script>
+	</body>
+</html>
