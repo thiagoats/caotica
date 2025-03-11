@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -73,4 +74,14 @@ public class Associate {
 	@OneToOne(mappedBy = "associate", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Contact contact;
+	
+	/**
+	 * CFP formatting post load
+	 * @author Thiago Pinheiro do Nascimento
+	 * @since 06 mar 2025
+	**/
+	@PostLoad
+	private void postLoad() {
+		this.cpf = this.cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+	}
 }
