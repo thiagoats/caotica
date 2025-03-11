@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PostLoad;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -76,12 +78,22 @@ public class Associate {
 	private Contact contact;
 	
 	/**
-	 * CFP formatting post load
+	 * Inserting the CPF mask after loading data
 	 * @author Thiago Pinheiro do Nascimento
 	 * @since 06 mar 2025
 	**/
 	@PostLoad
 	private void postLoad() {
 		this.cpf = this.cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+	}
+	
+	/**
+	 * Removing the CPF mask before persisting data
+	 * @author Thiago Pinheiro do Nascimento
+	 * @since 06 mar 2025
+	**/
+	@PrePersist @PreUpdate
+	private void prePersisPreUpdate() {
+		this.cpf = this.cpf.replaceAll("\\.|-", "");
 	}
 }
