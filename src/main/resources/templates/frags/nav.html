@@ -15,6 +15,9 @@
 							<li class="nav-item" th:classappend="${menu} == 'home' ? 'active'">
 								<a th:href="@{/}" class="nav-link"><i class="fas fa-home fa-sm mr-2"></i>Início</a>
 							</li>
+							<li class="nav-item" th:classappend="${menu} == 'associates' ? 'active'">
+								<a th:href="@{/associates}" class="nav-link"><i class="fas fa-associates fa-sm mr-2"></i>Associados</a>
+							</li>
 						</ul>
 					</div>
 					<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
