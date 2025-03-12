@@ -35,5 +35,16 @@
 					</ul>
 				</div>
 			</nav>
+			
+			<nav class="main-header navbar navbar-expand-md navbar-light navbar-white" th:fragment="menu-without">
+				<div class="container">
+					<a th:href="@{/}" class="navbar-brand">
+						<img th:src="@{/images/logo.png}" alt="Caótica" class="brand-image" style="opacity: .8">
+					</a>
+					<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</nav>
 	</body>
 </html>
