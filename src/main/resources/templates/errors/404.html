@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Caótica | Erro 404</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}">
+		<link rel="stylesheet" th:href="@{/vendors/adminlte/css/adminlte.min.css}">
+	</head>
+	<body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+			<div th:replace="~{frags/nav :: menu-without}"></div>
+			<div class="content-wrapper">
+				<div class="content-header"></div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="error-page">
+								<h2 class="headline text-secondary">404</h2>
+								<div class="error-content">
+									<h3><i class="fas fa-search-minus mr-2 text-secondary"></i>Página não encontrada</h3>
+									<p>
+										A página que você está procurando não pode ser encontrada na aplicação.
+										Você pode <a th:href="@{/}">voltar á página inicial</a> 
+										para continuar usando a aplicação, ou tirar dúvidas em: 
+										<b>admin@caotica.br</b>.
+									</p>
+									<a th:href="@{/}" class="btn btn-secondary btn-block"><i class="fa fa-home fa-sm mr-2"></i>Início</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{frags/footer :: sample}"></div>
+		</div>
+		<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+		<script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/vendors/adminlte/js/adminlte.min.js}"></script>
+	</body>
+</html>
