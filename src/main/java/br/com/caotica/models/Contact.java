@@ -32,13 +32,13 @@ public class Contact {
 	/**
 	 * Contact cellphone
 	**/
-	@Column(columnDefinition = "char(14)")
+	@Column(columnDefinition = "char(15)")
 	private String cellphone;
 	
 	/**
 	 * Contact telephone
 	**/
-	@Column(columnDefinition = "char(13)")
+	@Column(columnDefinition = "char(14)")
 	private String telephone;
 	
 	/**
