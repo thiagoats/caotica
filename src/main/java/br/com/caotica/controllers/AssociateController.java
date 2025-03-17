@@ -104,6 +104,8 @@ public class AssociateController {
 	public ModelAndView update(@Valid Associate associate, BindingResult result) {
 		if(result.hasErrors())
 			return update(associate.getId(), associate, true);
+		associate.getAddress().setId(associate.getId());
+		associate.getContact().setId(associate.getId());
 		associateService.persist(associate);
 		return new ModelAndView("redirect:/associates");
 	}
