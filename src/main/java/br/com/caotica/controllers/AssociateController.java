@@ -72,6 +72,8 @@ public class AssociateController {
 	public ModelAndView create(@Valid Associate associate, BindingResult result) {
 		if(result.hasErrors())
 			return create(associate);
+		associate.getAddress().setAssociate(associate);
+		associate.getContact().setAssociate(associate);
 		associateService.persist(associate);
 		return new ModelAndView("redirect:/associates");
 	}
