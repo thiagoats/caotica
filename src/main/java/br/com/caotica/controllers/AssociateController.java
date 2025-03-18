@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.caotica.exceptions.EntityWithErrorsException;
 import br.com.caotica.models.Associate;
 import br.com.caotica.models.Gender;
 import br.com.caotica.repositories.AssociateRepository;
@@ -74,7 +75,12 @@ public class AssociateController {
 			return create(associate);
 		associate.getAddress().setAssociate(associate);
 		associate.getContact().setAssociate(associate);
-		associateService.persist(associate);
+		try {
+			associateService.persist(associate);
+		} catch (EntityWithErrorsException e) {
+			result.rejectValue(e.getProperty(), e.getMessage(), e.getMessage());
+			return create(associate);
+		}
 		return new ModelAndView("redirect:/associates");
 	}
 	
@@ -106,7 +112,12 @@ public class AssociateController {
 			return update(associate.getId(), associate, true);
 		associate.getAddress().setId(associate.getId());
 		associate.getContact().setId(associate.getId());
-		associateService.persist(associate);
+		try {
+			associateService.persist(associate);
+		} catch (EntityWithErrorsException e) {
+			result.rejectValue(e.getProperty(), e.getMessage(), e.getMessage());
+			return update(associate.getId(), associate, true);
+		}
 		return new ModelAndView("redirect:/associates");
 	}
 }

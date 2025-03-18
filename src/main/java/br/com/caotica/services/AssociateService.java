@@ -1,5 +1,7 @@
 package br.com.caotica.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.caotica.exceptions.EntityInUseException;
 import br.com.caotica.exceptions.EntityNotFoundException;
+import br.com.caotica.exceptions.EntityWithErrorsException;
 import br.com.caotica.models.Associate;
 import br.com.caotica.repositories.AssociateRepository;
 
@@ -27,11 +30,15 @@ public class AssociateService {
 	/**
 	 * Associate persistence method
 	 * @author Thiago Pinheiro do Nascimento
+	 * @throws EntityWithErrorsException 
 	 * @since 06 mar 2025
 	**/
 	@Transactional
-	public Associate persist(Associate associate) {
-		 return associateRepository.save(associate);
+	public Associate persist(Associate associate) throws EntityWithErrorsException {
+		Optional<Associate> existingAssociate = associateRepository.findByCpf(associate.getCpf().replaceAll("\\.|-", ""));
+		if(existingAssociate.isPresent() && existingAssociate.get().getId() != associate.getId())
+			throw new EntityWithErrorsException("cpf", "CPF cadastrado para outro associado");
+		return associateRepository.save(associate);
 	}
 	
 	/**
