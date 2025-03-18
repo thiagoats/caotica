@@ -9,7 +9,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 
 import lombok.Getter;
@@ -44,7 +43,7 @@ public class Address {
 	/**
 	 * Address complement
 	**/
-	@Max(value = 50, message = "Complemento deve conter no máximo 50 caracteres")
+	@Length(max = 50, message = "Complemento deve conter no máximo 50 caracteres")
 	@Column(length = 50)
 	private String complement;
 	
