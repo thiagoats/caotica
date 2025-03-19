@@ -21,6 +21,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -80,6 +81,7 @@ public class Associate {
 	/**
 	 * Association between associate and address
 	**/
+	@Valid
 	@OneToOne(mappedBy = "associate", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Address address;
@@ -87,6 +89,7 @@ public class Associate {
 	/**
 	 * Association between associate and contact
 	**/
+	@Valid
 	@OneToOne(mappedBy = "associate", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Contact contact;
