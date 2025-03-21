@@ -1,5 +1,11 @@
 package br.com.caotica.models;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -54,4 +60,13 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "char(5)", nullable = false)
 	private Authority authority;
+	
+	/**
+	 * Obtaining user authority
+	 * @author Thiago Pinheiro do Nascimento
+	 * @since 20 mar 2025
+	**/
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(authority.getName()));
+	}
 }
