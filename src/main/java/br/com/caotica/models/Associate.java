@@ -1,15 +1,21 @@
 package br.com.caotica.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
-
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +42,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "associates")
 public class Associate {
 	
@@ -93,6 +100,34 @@ public class Associate {
 	@OneToOne(mappedBy = "associate", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Contact contact;
+	
+	/**
+	 * Associate registration timestamp
+	**/
+	@CreationTimestamp
+	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+	
+	/**
+	 * Associate registration user
+	**/
+	@CreatedBy
+	@Column(length = 50, nullable = false, updatable = false)
+	private String createdBy;
+	
+	/**
+	 * Associate last modified timestamp
+	**/
+	@UpdateTimestamp
+	@Column(columnDefinition = "datetime", nullable = false)
+	private LocalDateTime updatedAt;
+	
+	/**
+	 * Associate last modified user
+	**/
+	@LastModifiedBy
+	@Column(length = 50, nullable = false)
+	private String updatedBy;
 	
 	/**
 	 * Inserting the CPF mask after loading data
