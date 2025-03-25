@@ -6,12 +6,14 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import br.com.caotica.exceptions.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Controller advice exception handlers
  * @author Thiago Pinheiro do Nascimento
  * @since 13 mar 2025
 **/
+@Slf4j
 @ControllerAdvice
 public class AdviceExceptionHandler {
 
@@ -62,6 +64,7 @@ public class AdviceExceptionHandler {
 	**/
 	@ExceptionHandler(Exception.class)
 	public String handleUncaught(Exception e) {
+		log.error(e.getMessage(), e);
 		return "errors/500";
 	}
 }
