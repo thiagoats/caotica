@@ -20,7 +20,7 @@ import lombok.Setter;
 /**
  * Association model class
  * @author Thiago Pinheiro do Nascimento
- * @since 20 feb 202
+ * @since 20 feb 2025
 **/
 @Getter
 @Setter
